@@ -1,0 +1,11 @@
+.hero-section {
+  background-image: url('https://source.unsplash.com/1600x900/?wedding,romantic');
+    background-size: cover;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, .special-font {
+  font-family: 'Great Vibes', cursive;
+}
