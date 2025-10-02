@@ -1,46 +1,56 @@
-// ✅ Smooth Scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener("click", function(e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute("href")).scrollIntoView({
-      behavior: "smooth"
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute("href")).scrollIntoView({behavior: "smooth"});
+        document.getElementById("mobile-menu").classList.add("hidden");
+      });
     });
-    // يقفل المنيو بعد الضغط على لينك
-    document.getElementById("mobile-menu").classList.add("hidden");
-  });
-});
 
-// ✅ Toggle Mobile Menu
-const menuBtn = document.getElementById("menu-btn");
-const mobileMenu = document.getElementById("mobile-menu");
+    // Mobile menu toggle
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    menuBtn.addEventListener("click", () => { mobileMenu.classList.toggle("hidden"); });
 
-menuBtn.addEventListener("click", () => {
-  mobileMenu.classList.toggle("hidden");
-});
- const homeSection = document.getElementById('home');
+    // Background slider
+    const homeSection = document.getElementById('home');
+    const backgrounds = [
+      "url('WhatsApp Image 2025-10-01 at 21.32.13_01b02230.jpg')",
+      "url('WhatsApp Image 2025-10-01 at 21.01.53_6f3fe634.jpg')"
+    ];
+    let currentBg = 0;
+    function changeBackground() {
+      homeSection.style.backgroundImage = backgrounds[currentBg];
+      homeSection.style.backgroundSize = "cover";
+      homeSection.style.backgroundPosition = "center";
+      currentBg = (currentBg + 1) % backgrounds.length;
+    }
+    changeBackground();
+    setInterval(changeBackground, 4500);
 
-  // الصور
-  const backgrounds = [
-    "url('WhatsApp Image 2025-10-01 at 21.32.14_c78d2878.jpg')",
-    "url('WhatsApp Image 2025-10-01 at 21.01.53_6f3fe634.jpg')",
-    
-    
-  ];
+    // Countdown
+    document.addEventListener("DOMContentLoaded", function() {
+      const countdownEl = document.getElementById("countdown");
+      const weddingDate = new Date("October 30, 2025 20:00:00").getTime();
 
-  let currentBg = 0;
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
 
-  function changeBackground() {
-    homeSection.style.backgroundImage = backgrounds[currentBg];
-    homeSection.style.backgroundSize = "cover";
-    homeSection.style.backgroundPosition = "center";
-    homeSection.style.transition=" 1s ease-in-out";
+        if (distance < 0) {
+          countdownEl.innerHTML = "🎉 Here we go! 🎉";
+          clearInterval(interval);
+          return;
+        }
 
-    
-    currentBg = (currentBg + 1) % backgrounds.length;
-  }
+        const days = Math.floor(distance / (1000*60*60*24));
+        const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+        const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+        const seconds = Math.floor((distance % (1000*60)) / 1000);
 
-  // أول صورة
-  changeBackground();
+        countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
 
-  // يتغير كل4.5 ثواني
-  setInterval(changeBackground, 4500);
+      updateCountdown();
+      const interval = setInterval(updateCountdown, 1000);
+    });
