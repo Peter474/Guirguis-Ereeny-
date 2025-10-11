@@ -16,7 +16,7 @@
     const homeSection = document.getElementById('home');
     const backgrounds = [
       "url('WhatsApp Image 2025-10-01 at 21.32.13_01b02230.jpg')",
-      "url('WhatsApp Image 2025-10-01 at 21.01.53_6f3fe634.jpg')"
+      "url('WhatsApp Image 2025-10-11 at 19.37.23_6f112b9a.jpg')"
     ];
     let currentBg = 0;
     function changeBackground() {
@@ -54,3 +54,4 @@
       updateCountdown();
       const interval = setInterval(updateCountdown, 1000);
     });
+
