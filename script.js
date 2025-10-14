@@ -38,7 +38,7 @@
         const distance = weddingDate - now;
 
         if (distance < 0) {
-          countdownEl.innerHTML = "🎉 Here we go! 🎉";
+          countdownEl.innerHTML = "✨ Happily Ever After Starts Now ✨";
           clearInterval(interval);
           return;
         }
@@ -54,4 +54,5 @@
       updateCountdown();
       const interval = setInterval(updateCountdown, 1000);
     });
+
 
